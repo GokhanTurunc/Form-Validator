@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <script type="text/javascript" src="jquery-1.7.min.js"></script>
+        <script type="text/javascript" src="jquery-form-validator-min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $('#example1').validate({
+                    notificationLevel : 1,
+                    formErrorText : 'Lütfen kırmızı işaretli alanları doldurunuz.',
+                    caseSensitive : false
+                });
+            })
+            
+        </script>
+        <style>
+            form {
+                position:relative;
+                float:left;
+                width:800px;
+            }
+            
+            form .item {
+                position:relative;
+                height:40px;
+                width:100%;
+            }
+            
+            form .item label {
+                width:150px;
+                display:block;
+                float:left;
+            }
+            
+            form .item input {
+                float:left;
+            }
+            
+            form .item input.error,
+            form .item textarea.error,
+            form .item select.error {
+                border:1px solid red;
+                border-radius:3px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <form id="example1">
+            <div class="item">
+                <label>
+                    Adı Soyadı
+                </label>
+                <input type="text" id="nameSurname" name="nameSurname" 
+                       validate="true" rule="notNull" message="Lütfen ad ve soyad alanını doldurunuz." />
+
+            </div>
+            
+            <div class="item">
+                <label>
+                    E-Mail
+                </label>
+                <input type="text" id="email" name="email" validate="true" rule="isEmail" 
+                       message="Lütfen doğru bir e-mail adresi giriniz." />
+            </div>
+            
+            <div class="item">
+                <label>
+                    Şehir
+                </label>
+                <input type="text" id="city" name="city" validate="true" rule="equalTo" requiredValue="İstanbul" 
+                       message="Lütfen İstanbul dışında bir şehir girmeyiniz." />
+            </div>
+            
+            <div class="item">
+                <label>
+                    Doğum Yılı
+                </label>
+                <select name="birthYear" id="birthYear" validate="true" rule="equalTo"
+                        requiredValue="2008" message="Lütfen 2008 yılından başka...">
+                    <option value="">--seçiniz--</option>
+                    <option value="2008">2008</option>
+                    <option value="2007">2007</option>
+                </select>
+            </div>
+            
+            <div class="item">
+                <label>
+                    Ücret
+                </label>
+                <input type="text" id="rate" name="rate" validate="true" rule="number" 
+                       message="Lütfen sadece sayı giriniz" />
+            </div>
+            
+            <input type="submit" value="Gönder" />
+        </form>
+    </body>
+</html>
